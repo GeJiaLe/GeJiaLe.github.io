@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/12 | Hexo</title>
+  <title>day4 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/12/index.html">
+  <meta name="description" content="LoginServlet package com.dzqc.web; import java.io.IOException;import java.io.PrintWriter; import javax.servlet.ServletException;import javax.servlet.http.HttpServlet;import javax.servlet.http.HttpServ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day4">
+<meta property="og:url" content="http://yoursite.com/2019/12/01/day4/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="LoginServlet package com.dzqc.web; import java.io.IOException;import java.io.PrintWriter; import javax.servlet.ServletException;import javax.servlet.http.HttpServlet;import javax.servlet.http.HttpServ">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-01T07:42:23.819Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="day4">
+<meta name="twitter:description" content="LoginServlet package com.dzqc.web; import java.io.IOException;import java.io.PrintWriter; import javax.servlet.ServletException;import javax.servlet.http.HttpServlet;import javax.servlet.http.HttpServ">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,130 +154,278 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-day4" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      day4
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/01/day4/" class="archive-article-date">
+
+        
+        <a href="/2019/12/01/day4/" class="archive-article-date">
   	<time datetime="2019-12-01T07:41:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/01/day4/">day4</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>LoginServlet</p>
+<p>package com.dzqc.web;</p>
+<p>import java.io.IOException;<br>import java.io.PrintWriter;</p>
+<p>import javax.servlet.ServletException;<br>import javax.servlet.http.HttpServlet;<br>import javax.servlet.http.HttpServletRequest;<br>import javax.servlet.http.HttpServletResponse;<br>import javax.servlet.http.HttpSession;</p>
+<p>import com.dzqc.bean.User;<br>import com.dzqc.bean.common.Page;<br>import com.dzqc.service.BusinessService;</p>
+<p>/**</p>
+<ul>
+<li><p>Servlet implementation class LoginServlet<br> */<br> public class LoginServlet extends HttpServlet {<br> private static final long serialVersionUID = 1L;<br> BusinessService bsi = new BusinessService();</p>
+<p> /**</p>
+<ul>
+<li><p>@see HttpServlet#HttpServlet()<br> */<br> public LoginServlet() {<br> super();<br> // TODO Auto-generated constructor stub<br> }</p>
+<p>/**</p>
+</li>
+<li><p>@see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse</p>
+</li>
+<li><p>response)<br>  */<br> protected void doGet(HttpServletRequest request, HttpServletResponse response)</p>
+<pre><code>throws ServletException, IOException {</code></pre><p> request.setCharacterEncoding(“utf-8”); // 设置编码<br> String type = request.getParameter(“type”);<br> if (type.equals(“regist”)) {</p>
+<pre><code>regist(request, response);</code></pre><p> } else if (type.equals(“login”)) {</p>
+<pre><code>login(request, response);</code></pre><p> }else if(type.equals(“page”)){</p>
+<pre><code>page(request, response);</code></pre><p> }else if(type.equals(“ybyz”)){</p>
+<pre><code>ybyz(request,response);</code></pre><p> }<br> }<br> /**</p>
+</li>
+<li><p>查询用户名是否已经存在</p>
+</li>
+<li><p>@param request</p>
+</li>
+<li><p>@param response</p>
+</li>
+<li><p>@throws IOException<br> */<br> private void ybyz(HttpServletRequest request, HttpServletResponse response) throws IOException {<br> String name=request.getParameter(“name”);<br> int n=0;<br> PrintWriter out=response.getWriter();<br> if(!name.equals(“”)){</p>
+<pre><code>n=bsi.ybyzName(name);
+if(n==1){
+    out.write(&quot;用户名已存在&quot;);
+}else{
+    out.write(&quot;用户名可用&quot;);
+}</code></pre><p> }else{</p>
+<pre><code>out.write(&quot;请输入用户名&quot;);</code></pre><p> }</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>}
 
-        <div class="article-info info-on-right">
-          
-          
+/**
+ * 分页查询的方法
+ * @param request
+ * @param response
+ * @throws IOException 
+ * @throws ServletException 
+    */
+    private void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String num=request.getParameter(&quot;num&quot;);
+    Page page=bsi.getAllCustomer(num);
+    page.setUri(&quot;/LoginServlet?type=page&quot;);
+    request.setAttribute(&quot;page&quot;, page);
+    request.getRequestDispatcher(&quot;welcome.jsp&quot;).forward(request, response);
+    }
 
+/**
+ * 处理登录的请求
+ * 
+ * @param request
+ * @param response
+ * @throws IOException 
+ * @throws ServletException 
+    */
+    private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // TODO Auto-generated method stub
+    String name = request.getParameter(&quot;username&quot;);
+    String pwd = request.getParameter(&quot;pwd&quot;);
+    String pageNum=request.getParameter(&quot;num&quot;);
+    // 获取验证码
+    String code = request.getParameter(&quot;code&quot;);
+    // 获得生成的验证码
+    HttpSession session = request.getSession();
+    String codes = (String) session.getAttribute(&quot;code&quot;);
+    if (code.equals(codes)) {
+        User u = bsi.login(name, pwd);
+        if (u != null) {
+            session.setAttribute(&quot;user&quot;, u);
+            Page page=bsi.getAllCustomer(pageNum);
+            page.setUri(&quot;/LoginServlet?type=page&quot;);
+            request.setAttribute(&quot;page&quot;, page);
+            request.getRequestDispatcher(&quot;welcome.jsp&quot;).forward(request, response);
+        } else {
+            request.setAttribute(&quot;err_up&quot;, &quot;用户名或密码错误&quot;);
+            request.getRequestDispatcher(&quot;login.jsp&quot;).forward(request, response);
+        }
+    } else {
+        request.setAttribute(&quot;err_code&quot;, &quot;验证码错误&quot;);
+        // response.sendRedirect(&quot;Login.jsp&quot;);
+        request.getRequestDispatcher(&quot;login.jsp&quot;).forward(request, response);
+    }
+    }
+
+/**
+ * 处理注册的请求
+ * 
+ * @param request
+ * @param response
+ * @throws IOException 
+ * @throws ServletException 
+    */
+    private void regist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String name=request.getParameter(&quot;username&quot;);
+    String pwd=request.getParameter(&quot;pwd&quot;);
+    if(name!=null &amp;&amp; pwd!=null){
+        int n=bsi.regist(name,pwd);
+        if(n==0){
+            request.setAttribute(&quot;re_err&quot;, &quot;注册失败请重新注册&quot;);
+            request.getRequestDispatcher(&quot;regist.jsp&quot;).forward(request, response);
+        }else{
+            response.sendRedirect(&quot;login.jsp&quot;);
+        }
+    }else{
+        System.out.println(&quot;regist:获取用户名或密码失败&quot;);
+
+    }
+    }
+
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    doGet(request, response);
+}</code></pre><p>}</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/01/day4/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/01/day3/" class="archive-article-date">
-  	<time datetime="2019-12-01T07:34:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/01/day3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">day3</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/01/day3/">day3</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/01/day2/" class="archive-article-date">
-  	<time datetime="2019-12-01T07:29:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/01/day2/">day2</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/01/day1/" class="archive-article-date">
-  	<time datetime="2019-12-01T07:11:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/01/day1/">day1</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -296,8 +448,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
