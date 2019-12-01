@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>day2 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="tomcat目录结构详解 打开tomcat的解压之后的目录可以看到如下的目录结构：   1**、**bin： bin目录主要是用来存放tomcat的命令，主要有两大类，一类是以.sh结尾的（linux命令），另一类是以.bat结尾的（windows命令）。可以把命令配置在环境变量里边 startup 用来启动tomcat  shutdown 用来关闭tomcat  修改catalina可以设置to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day2">
+<meta property="og:url" content="http://yoursite.com/2019/12/01/day2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="tomcat目录结构详解 打开tomcat的解压之后的目录可以看到如下的目录结构：   1**、**bin： bin目录主要是用来存放tomcat的命令，主要有两大类，一类是以.sh结尾的（linux命令），另一类是以.bat结尾的（windows命令）。可以把命令配置在环境变量里边 startup 用来启动tomcat  shutdown 用来关闭tomcat  修改catalina可以设置to">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="file:///C:%5CUsers%5C131%5CAppData%5CLocal%5CTemp%5Cksohtml10600%5Cwps1.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5C131%5CAppData%5CLocal%5CTemp%5Cksohtml10600%5Cwps2.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5C131%5CAppData%5CLocal%5CTemp%5Cksohtml10600%5Cwps3.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5C131%5CAppData%5CLocal%5CTemp%5Cksohtml10600%5Cwps4.jpg">
+<meta property="og:updated_time" content="2019-12-01T07:31:47.216Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="day2">
+<meta name="twitter:description" content="tomcat目录结构详解 打开tomcat的解压之后的目录可以看到如下的目录结构：   1**、**bin： bin目录主要是用来存放tomcat的命令，主要有两大类，一类是以.sh结尾的（linux命令），另一类是以.bat结尾的（windows命令）。可以把命令配置在环境变量里边 startup 用来启动tomcat  shutdown 用来关闭tomcat  修改catalina可以设置to">
+<meta name="twitter:image" content="file:///C:%5CUsers%5C131%5CAppData%5CLocal%5CTemp%5Cksohtml10600%5Cwps1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,130 +159,188 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-day2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      day2
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/01/day2/" class="archive-article-date">
+
+        
+        <a href="/2019/12/01/day2/" class="archive-article-date">
   	<time datetime="2019-12-01T07:29:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/01/day2/">day2</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>tomcat目录结构详解</strong></p>
+<p>打开tomcat的解压之后的目录可以看到如下的目录结构：</p>
+<p><img src="file:///C:%5CUsers%5C131%5CAppData%5CLocal%5CTemp%5Cksohtml10600%5Cwps1.jpg" alt="img"> </p>
+<p><strong>1**</strong>、<strong>**bin：</strong></p>
+<p>bin目录主要是用来存放tomcat的命令，主要有两大类，一类是以.sh结尾的（linux命令），另一类是以.bat结尾的（windows命令）。可以把命令配置在环境变量里边</p>
+<p>startup 用来启动tomcat </p>
+<p>shutdown 用来关闭tomcat </p>
+<p>修改catalina可以设置tomcat的内存</p>
+<p><strong>2**</strong>、<strong>**webapps：</strong></p>
+<p>webapps目录用来存放应用程序，当tomcat启动时会去加载webapps目录下的应用程序。可以以文件夹、war包、jar包的形式发布应用。<br>当然，你也可以把应用程序放置在磁盘的任意位置，在配置文件中映射好就行。 </p>
+<p><strong>3**</strong>、<strong>**conf</strong></p>
+<p>conf目录主要是用来存放tomcat的一些配置文件。</p>
+<p>server.xml可以设置端口号、设置域名或IP、默认加载的项目、请求编码 </p>
+<p>web.xml可以设置tomcat支持的文件类型 </p>
+<p>context.xml可以用来配置数据源之类的 </p>
+<p>tomcat-users.xml用来配置管理tomcat的用户与权限</p>
+<p><strong>4**</strong>、<strong>**lib:</strong></p>
+<p>lib目录主要用来存放tomcat运行需要加载的jar包。<br>例如，像连接数据库的jdbc的包我们可以加入到lib目录中来。</p>
+<p><strong>5、**</strong>logs：**</p>
+<p>logs目录用来存放tomcat在运行过程中产生的日志文件，非常重要的是在控制台输出的日志。（清空不会对tomcat运行带来影响） </p>
+<p>在windows环境中，控制台的输出日志在catalina.xxxx-xx-xx.log文件中 </p>
+<p>在linux环境中，控制台的输出日志在catalina.out文件中</p>
+<p><strong>6、**</strong>temp：**</p>
+<p>temp目录用户存放tomcat在运行过程中产生的临时文件。（清空不会对tomcat运行带来影响</p>
+<p><strong>7、**</strong>work:**</p>
+<h2 id="work目录用来存放tomcat在运行时的编译后文件，例如JSP编译后的文件。-清空work目录，然后重启tomcat，可以达到清除缓存的作用。"><a href="#work目录用来存放tomcat在运行时的编译后文件，例如JSP编译后的文件。-清空work目录，然后重启tomcat，可以达到清除缓存的作用。" class="headerlink" title="work目录用来存放tomcat在运行时的编译后文件，例如JSP编译后的文件。  清空work目录，然后重启tomcat，可以达到清除缓存的作用。"></a>work目录用来存放tomcat在运行时的编译后文件，例如JSP编译后的文件。  清空work目录，然后重启tomcat，可以达到清除缓存的作用。</h2><p><strong>2.2、了解java web项目目录结构</strong></p>
+<p><img src="file:///C:%5CUsers%5C131%5CAppData%5CLocal%5CTemp%5Cksohtml10600%5Cwps2.jpg" alt="img"> </p>
+<p><strong>web.xml配置文件</strong></p>
+<p><img src="file:///C:%5CUsers%5C131%5CAppData%5CLocal%5CTemp%5Cksohtml10600%5Cwps3.jpg" alt="img"> </p>
+<p>项目启动时会加载web.xml配置文件</p>
+<p>Web.xml文件的作用如下</p>
+<p><strong>1、指定欢迎页面</strong>，例如：</p>
+<p><img src="file:///C:%5CUsers%5C131%5CAppData%5CLocal%5CTemp%5Cksohtml10600%5Cwps4.jpg" alt="img"><br>上面的例子指定了几个欢迎页面，显示时按顺序从第一个找起，如果第一个存在，就显示第一个，后面的不起作用。如果第一个不存在，就找第二个，以此类推。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/01/day2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/01/day1/" class="archive-article-date">
-  	<time datetime="2019-12-01T07:11:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/01/day1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">day1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/01/day1/">day1</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/12/得得得/" class="archive-article-date">
-  	<time datetime="2019-10-12T11:25:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/12/得得得/">得得得</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/12/hello-world/" class="archive-article-date">
-  	<time datetime="2019-10-12T08:50:19.272Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/12/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -296,8 +363,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
