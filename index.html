@@ -152,6 +152,165 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-day6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/12/day6/">day6</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/12/day6/" class="archive-article-date">
+  	<time datetime="2019-12-12T02:51:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>package com.dzqc.web;</p>
+<p>import java.io.IOException;<br>import java.util.ArrayList;</p>
+<p>import javax.servlet.ServletException;<br>import javax.servlet.http.HttpServlet;<br>import javax.servlet.http.HttpServletRequest;<br>import javax.servlet.http.HttpServletResponse;</p>
+<p>import com.dzqc.bean.DepartmentInfo;<br>import com.dzqc.bean.UserInfo;<br>import com.dzqc.bean.UserRole;<br>import com.dzqc.bean.common.Page;<br>import com.dzqc.service.DepartmentService;<br>import com.dzqc.service.UserRoleService;<br>import com.dzqc.service.Userservice;<br>import com.dzqc.service.impl.DepartmentServiceImpl;<br>import com.dzqc.service.impl.UserRoleServiceImpl;<br>import com.dzqc.service.impl.UserServiceImpl;</p>
+<p>/**</p>
+<ul>
+<li>Servlet implementation class UserQueryServlet<br> <em>/<br> public class UserQueryServlet extends HttpServlet {<br> private static final long serialVersionUID = 1L;<br> Userservice userservice=new UserServiceImpl();<br> /*</em><ul>
+<li>@see HttpServlet#HttpServlet()<br> */<br> public UserQueryServlet() {<br> super();</li>
+</ul>
+</li>
+</ul>
+<pre><code>}
+
+/**
+ * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+    */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String type=request.getParameter(&quot;type&quot;);
+    if(type.equals(&quot;listUser&quot;)){
+        listUser(request,response);
+    }else if(type.equals(&quot;page&quot;)){
+        page(request,response);
+    }else if(type.equals(&quot;userDetail&quot;)){
+        userDetail(request,response);
+    }else if(type.equals(&quot;userDelete&quot;)){
+        userDelete(request,response);
+    }else if(type.equals(&quot;userEdit&quot;)){
+        userEdit(request,response);
+    }
+    }
+
+private void userEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String id=request.getParameter(&quot;id&quot;);
+    UserInfo ufe=userservice.getUserInfoById(id);
+    //获取部门角色表的数据
+    DepartmentService dept=new DepartmentServiceImpl();
+    UserRoleService urs=new UserRoleServiceImpl();
+    ArrayList&lt;DepartmentInfo&gt; listDept=dept.getAllDept();
+    ArrayList&lt;UserRole&gt; listUr=urs.getAllUR();
+    request.setAttribute(&quot;ufe&quot;, ufe);
+    request.setAttribute(&quot;listDept&quot;, listDept);
+    request.setAttribute(&quot;listur&quot;, listUr);
+    request.getRequestDispatcher(&quot;view/user/user_edit.jsp&quot;).forward(request, response);
+
+}
+
+private void userDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String id=request.getParameter(&quot;id&quot;);
+    int n=userservice.deleteUserById(id);
+    if(n&gt;0){
+        request.setAttribute(&quot;info&quot;, &quot;删除成功&quot;);
+
+    }else{
+        request.setAttribute(&quot;info&quot;, &quot;删除失败&quot;);
+    }
+    request.getRequestDispatcher(&quot;view/user/user_save.jsp&quot;).forward(request, response);
+
+}
+
+private void userDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String id=request.getParameter(&quot;id&quot;);
+    UserInfo ufe=userservice.getUserInfoById(id);
+    request.setAttribute(&quot;ufe&quot;, ufe);
+    request.getRequestDispatcher(&quot;view/user/user_details.jsp&quot;).forward(request, response);
+
+}
+
+private void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String name=request.getParameter(&quot;UserName&quot;);
+    String queryType=request.getParameter(&quot;queryType&quot;);
+    String pageNum=request.getParameter(&quot;num&quot;);
+
+    Page page=userservice.getAllUser(name, queryType, pageNum);
+    page.setUri(&quot;/UserQueryServlet?type=page&amp;userName=&quot;+name+&quot;&amp;queryType=&quot;+queryType);
+    request.setAttribute(&quot;page&quot;, page);
+    request.getRequestDispatcher(&quot;view/user/user_list.jsp&quot;).forward(request, response);
+
+
+​    
+}
+
+private void listUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String name=request.getParameter(&quot;UserName&quot;);
+    String queryType=request.getParameter(&quot;queryType&quot;);
+    Page page=userservice.getAllUser(name, queryType, &quot;1&quot;);
+    page.setUri(&quot;/UserQueryServlet?type=page&amp;userName=&quot;+name+&quot;&amp;queryType=&quot;+queryType);
+    request.getSession().setAttribute(&quot;page&quot;, page);
+    request.getRequestDispatcher(&quot;view/user/user_list.jsp&quot;).forward(request, response);
+}
+
+/**
+ * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+    */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // TODO Auto-generated method stub
+    doGet(request, response);
+    }</code></pre><p>}</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/12/day6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-day5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

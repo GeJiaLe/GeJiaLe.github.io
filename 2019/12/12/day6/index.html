@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>day6 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="package com.dzqc.web; import java.io.IOException;import java.util.ArrayList; import javax.servlet.ServletException;import javax.servlet.http.HttpServlet;import javax.servlet.http.HttpServletRequest;im">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day6">
+<meta property="og:url" content="http://yoursite.com/2019/12/12/day6/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="package com.dzqc.web; import java.io.IOException;import java.util.ArrayList; import javax.servlet.ServletException;import javax.servlet.http.HttpServlet;import javax.servlet.http.HttpServletRequest;im">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-12T02:52:55.411Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="day6">
+<meta name="twitter:description" content="package com.dzqc.web; import java.io.IOException;import java.util.ArrayList; import javax.servlet.ServletException;import javax.servlet.http.HttpServlet;import javax.servlet.http.HttpServletRequest;im">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,238 +154,252 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-day6" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      day6
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/12/day6/" class="archive-article-date">
+
+        
+        <a href="/2019/12/12/day6/" class="archive-article-date">
   	<time datetime="2019-12-12T02:51:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-12</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/12/day6/">day6</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>package com.dzqc.web;</p>
+<p>import java.io.IOException;<br>import java.util.ArrayList;</p>
+<p>import javax.servlet.ServletException;<br>import javax.servlet.http.HttpServlet;<br>import javax.servlet.http.HttpServletRequest;<br>import javax.servlet.http.HttpServletResponse;</p>
+<p>import com.dzqc.bean.DepartmentInfo;<br>import com.dzqc.bean.UserInfo;<br>import com.dzqc.bean.UserRole;<br>import com.dzqc.bean.common.Page;<br>import com.dzqc.service.DepartmentService;<br>import com.dzqc.service.UserRoleService;<br>import com.dzqc.service.Userservice;<br>import com.dzqc.service.impl.DepartmentServiceImpl;<br>import com.dzqc.service.impl.UserRoleServiceImpl;<br>import com.dzqc.service.impl.UserServiceImpl;</p>
+<p>/**</p>
+<ul>
+<li>Servlet implementation class UserQueryServlet<br> <em>/<br> public class UserQueryServlet extends HttpServlet {<br> private static final long serialVersionUID = 1L;<br> Userservice userservice=new UserServiceImpl();<br> /*</em><ul>
+<li>@see HttpServlet#HttpServlet()<br> */<br> public UserQueryServlet() {<br> super();</li>
+</ul>
+</li>
+</ul>
+<pre><code>}
 
-        <div class="article-info info-on-right">
-          
-          
+/**
+ * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+    */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String type=request.getParameter(&quot;type&quot;);
+    if(type.equals(&quot;listUser&quot;)){
+        listUser(request,response);
+    }else if(type.equals(&quot;page&quot;)){
+        page(request,response);
+    }else if(type.equals(&quot;userDetail&quot;)){
+        userDetail(request,response);
+    }else if(type.equals(&quot;userDelete&quot;)){
+        userDelete(request,response);
+    }else if(type.equals(&quot;userEdit&quot;)){
+        userEdit(request,response);
+    }
+    }
 
+private void userEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String id=request.getParameter(&quot;id&quot;);
+    UserInfo ufe=userservice.getUserInfoById(id);
+    //获取部门角色表的数据
+    DepartmentService dept=new DepartmentServiceImpl();
+    UserRoleService urs=new UserRoleServiceImpl();
+    ArrayList&lt;DepartmentInfo&gt; listDept=dept.getAllDept();
+    ArrayList&lt;UserRole&gt; listUr=urs.getAllUR();
+    request.setAttribute(&quot;ufe&quot;, ufe);
+    request.setAttribute(&quot;listDept&quot;, listDept);
+    request.setAttribute(&quot;listur&quot;, listUr);
+    request.getRequestDispatcher(&quot;view/user/user_edit.jsp&quot;).forward(request, response);
+
+}
+
+private void userDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String id=request.getParameter(&quot;id&quot;);
+    int n=userservice.deleteUserById(id);
+    if(n&gt;0){
+        request.setAttribute(&quot;info&quot;, &quot;删除成功&quot;);
+
+    }else{
+        request.setAttribute(&quot;info&quot;, &quot;删除失败&quot;);
+    }
+    request.getRequestDispatcher(&quot;view/user/user_save.jsp&quot;).forward(request, response);
+
+}
+
+private void userDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String id=request.getParameter(&quot;id&quot;);
+    UserInfo ufe=userservice.getUserInfoById(id);
+    request.setAttribute(&quot;ufe&quot;, ufe);
+    request.getRequestDispatcher(&quot;view/user/user_details.jsp&quot;).forward(request, response);
+
+}
+
+private void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String name=request.getParameter(&quot;UserName&quot;);
+    String queryType=request.getParameter(&quot;queryType&quot;);
+    String pageNum=request.getParameter(&quot;num&quot;);
+
+    Page page=userservice.getAllUser(name, queryType, pageNum);
+    page.setUri(&quot;/UserQueryServlet?type=page&amp;userName=&quot;+name+&quot;&amp;queryType=&quot;+queryType);
+    request.setAttribute(&quot;page&quot;, page);
+    request.getRequestDispatcher(&quot;view/user/user_list.jsp&quot;).forward(request, response);
+
+
+​    
+}
+
+private void listUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String name=request.getParameter(&quot;UserName&quot;);
+    String queryType=request.getParameter(&quot;queryType&quot;);
+    Page page=userservice.getAllUser(name, queryType, &quot;1&quot;);
+    page.setUri(&quot;/UserQueryServlet?type=page&amp;userName=&quot;+name+&quot;&amp;queryType=&quot;+queryType);
+    request.getSession().setAttribute(&quot;page&quot;, page);
+    request.getRequestDispatcher(&quot;view/user/user_list.jsp&quot;).forward(request, response);
+}
+
+/**
+ * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+    */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // TODO Auto-generated method stub
+    doGet(request, response);
+    }</code></pre><p>}</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/12/day6/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/01/day5/" class="archive-article-date">
-  	<time datetime="2019-12-01T07:43:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/01/day5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">day5</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/01/day5/">day5</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/01/day4/" class="archive-article-date">
-  	<time datetime="2019-12-01T07:41:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/01/day4/">day4</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/01/day3/" class="archive-article-date">
-  	<time datetime="2019-12-01T07:34:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/01/day3/">day3</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/01/day2/" class="archive-article-date">
-  	<time datetime="2019-12-01T07:29:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/01/day2/">day2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/01/day1/" class="archive-article-date">
-  	<time datetime="2019-12-01T07:11:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/01/day1/">day1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/12/得得得/" class="archive-article-date">
-  	<time datetime="2019-10-12T11:25:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/12/得得得/">得得得</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/12/hello-world/" class="archive-article-date">
-  	<time datetime="2019-10-12T08:50:19.272Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -404,8 +422,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
